@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
 import { TypeActionService } from './type-action.service';
 import { TypeAction } from './type-action.entity';
+import {ApiTags } from '@nestjs/swagger';
 
 @Controller('type-actions')
 export class TypeActionController {
