@@ -40,6 +40,25 @@ export class UserService {
         return this.userRepository.save(newUser);
     }
 
+    async updateUser(id: number | FindOneOptions<UserEntity>, updatedUser: Partial<UserEntity>): Promise<UserEntity | undefined> {
+        let existingUser: UserEntity;
+
+        if (typeof id === 'number') {
+            existingUser = await this.userRepository.findOne(id);
+        } else {
+            existingUser = await this.userRepository.findOne(id);
+        }
+
+        if (!existingUser) {
+            return undefined; 
+        }
+
+        Object.assign(existingUser, updatedUser);
+
+        return this.userRepository.save(existingUser);
+    }
+
+
 
     async delete(id: number): Promise<void> {
         await this.userRepository.delete(id);
