@@ -1,21 +1,21 @@
 version: '3.8'
 
 services:
-  nestjs:
-    build: 
-      context: ./nestjs
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mysql
+  # nestjs:
+  #   build: 
+  #     context: ./nestjs
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - mysql
 
-  react:
-    build:
-      context: ./react
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
+  # react:
+  #   build:
+  #     context: ./react
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "80:80"
 
   mysql:
     image: mysql:5.7

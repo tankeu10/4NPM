@@ -29,12 +29,12 @@ export class UserController {
         return res.status(HttpStatus.CREATED).json(newUser);
     }
 
-    @ApiTags('put')
-    @Put(":id")
-    async update(@Param('id') id: string, @Body() updatedUser: Partial<UserEntity>, @Res() res: any) { 
-        const updatedUserData = await this.userService.updateUser(parseInt(id), updatedUser);
-        return res.status(HttpStatus.OK).json(updatedUserData);
-    }
+    // @ApiTags('put')
+    // @Put(":id")
+    // async update(@Param('id') id: string, @Body() updatedUser: Partial<UserEntity>, @Res() res: any) { 
+    //     const updatedUserData = await this.userService.updateUser(parseInt(id), updatedUser);
+    //     return res.status(HttpStatus.OK).json(updatedUserData);
+    // }
 
     @ApiTags('delete')
     @Delete(":id")
