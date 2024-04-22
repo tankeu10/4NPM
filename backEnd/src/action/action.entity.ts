@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column,JoinColumn, ManyToOne } from 'typeorm';
 import { TypeAction } from '../typeaction/type-action.entity';
 import { UserEntity } from 'src/users/user';
 
@@ -9,9 +9,13 @@ export class ActionEntity {
 
   @Column()
   date: Date;
-
-  @ManyToOne(() => TypeAction, typeAction => typeAction.actions)
-  typeAction: TypeAction;
   
+
+  @ManyToOne(() => UserEntity, (UserEntity) => UserEntity.id)
+  @JoinColumn({name: 'userId'})
+  user: UserEntity;
+  @ManyToOne(() => TypeAction, (TypeAction) => TypeAction.typ_id)
+  @JoinColumn({name: 'typ_actionId'})
+  typeAction: TypeAction;
 
 }

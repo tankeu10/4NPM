@@ -1,5 +1,10 @@
+import { ApiProperty, ApiTags } from "@nestjs/swagger";
+
+
 export class CreateTypeActionDto {
-    readonly typ_id: number;
-    readonly name: string;
+@ApiProperty()
+    typ_id: number;
+@ApiProperty()
+    name: string;
     
 }

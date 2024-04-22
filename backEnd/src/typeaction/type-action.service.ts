@@ -10,11 +10,11 @@ export class TypeActionService {
     private typeActionRepository: Repository<TypeAction>,
   ) {}
 
-  async findAll(): Promise<TypeAction[]> {
+  findAll(): Promise<TypeAction[]> {
     return this.typeActionRepository.find();
   }
 
-  async findOne(typ_id: number): Promise<TypeAction> {
+  findOne(typ_id: number){
     return this.typeActionRepository.findOne({ where: { typ_id } });
 }
 
@@ -22,14 +22,10 @@ export class TypeActionService {
     return this.typeActionRepository.save(typeAction);
   }
 
-  async update(typ_id: number, updatedTypeAction: TypeAction): Promise<TypeAction | undefined> {
-    const result = await this.typeActionRepository.update(typ_id, updatedTypeAction);
-    if (result.affected === 1) {
-        return this.typeActionRepository.findOne({ where: { typ_id } });
-    }
-    return undefined;
+  update(typ_id: number, updatedTypeAction: TypeAction) {
+    
+    return 'This action updates a #${id} typeAction';
 }
-
 
   async delete(typ_id: number): Promise<void> {
     await this.typeActionRepository.delete(typ_id);

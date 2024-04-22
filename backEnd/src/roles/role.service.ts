@@ -1,7 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
+import { OffsetWithoutLimitNotSupportedError } from "typeorm";
+import {CreateRoleDto} from "./dto/create-role.dto"
+import { UpdateRoleDto } from "./dto/update-role.dto";
 import { RoleEntity } from "./role.entity";
+import { CreateActionDto } from "src/action/dto/create-action.dto";
 
 @Injectable()
 export class RoleService {
@@ -10,24 +14,20 @@ export class RoleService {
         private RoleEntityRepository: Repository<RoleEntity>
     ) { }
 
-    async findAll(): Promise<RoleEntity[]> {
+    findAll(): Promise<RoleEntity[]> {
         return this.RoleEntityRepository.find();
     }
 
-    async findOne(role_id: number): Promise<RoleEntity> {
+    findOne(role_id: number): Promise<RoleEntity | null > {
         return this.RoleEntityRepository.findOne({ where: { role_id } });
     }
 
-    async create(RoleEntity: RoleEntity): Promise<RoleEntity> {
-        return this.RoleEntityRepository.save(RoleEntity);
+    create(RoleEntity: RoleEntity){
+        return 'This action adds a new role';
     }
 
-    async update(role_id: number, updatedRoleEntity: RoleEntity): Promise<RoleEntity | undefined> {
-        const result = await this.RoleEntityRepository.update(role_id, updatedRoleEntity);
-        if (result.affected === 1) {
-            return this.RoleEntityRepository.findOne({ where: { role_id } });
-        }
-        return undefined;
+    update(role_id: number, updatedRoleEntity: RoleEntity) {
+       return 'This action updates a #${id} role';
     }
     
     
